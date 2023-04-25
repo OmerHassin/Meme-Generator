@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <script src="https://kit.fontawesome.com/e14e65cb66.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="main-container main-layout" onload="onGalleryInit()">
+    <header class="main-header main-layout flex">
+        <img src="img/design/LOGO.png" class="logo" alt="Logo" onclick="onGalleryInit()">
+
+        <nav class="main-nav">
+            <ul class="clean-list flex">
+                <li><a class="nav-link gallery-link flex" href="" onclick="onGalleryInit()">Gallery</a></li>
+                <li><a class="nav-link saved-link flex" href="#" onclick="onSavedInit()">Saved</a></li>
+                <li><a class="nav-link about-link flex" href="#" onclick="onAboutInit()">About</a></li>
+            </ul>
+        </nav>
+        
+        <button class="btn-menu" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <main class="main-content main-layout">
+        <!-- gallery -->
+        <section class="gallery-container">
+            <nav class="search-nav flex">
+                <div class="search-bar">
+                    <i class="fab fa-facebook"></i>
+                    <input type="text" class="search-input" placeholder="Search Keyword" list="keywords-datalist" onclick="this.select()" oninput="">
+                    <datalist id="keywords-datalist">
+                        <option value="Edge">
+                        <option value="Firefox">
+                        <option value="Chrome">
+                        <option value="Opera">
+                        <option value="Safari">
+                    </datalist>
+                </div>
+
+                <div class="keywords-bar">
+                    <div class="keywords-container flex">
+                    </div>
+                </div>
+
+                <button class="btn-more-keywords">More...</button>
+            </nav>
+        </section>
+
+        <!-- meme editor -->
+        <section class="meme-editor-container display-none">
+            <div class="canvas-container">
+                <canvas></canvas>
+            </div>
+
+            <div class="control-panel flex">
+                <div class="text-bar">
+                    <input type="text" class="text-line-input" oninput="onSetLineTxt(this.value)" onclick="this.select()">
+                </div>
+
+                <div class="control-basics">
+                    <button class="btn-control btn-switch-line" onclick="onSwitchLine()"><i class="fab fa-facebook"></i><i class="fab fa-facebook"></i></button>
+                    <button class="btn-control btn-add-line" onclick="onAddLine()"><i class="fab fa-facebook"></i></button>
+                    <button class="btn-control btn-remove-line" onclick="onRemoveLine()"><i class="fab fa-facebook"></i></button>
+                </div>
+
+                <div class="control-fonts grid">
+                    <button class="btn-control btn-font-bigger" onclick="onSetFontSize(1)">+</button>
+                    <button class="btn-control btn-font-smaller" onclick="onSetFontSize(-1)">-</button>
+                    <button class="btn-control btn-font-left" onclick="onSetAlignText('start')"><i class="fab fa-facebook"></i></button>
+                    <button class="btn-control btn-font-center" onclick="onSetAlignText('center')"><i class="fab fa-facebook"></i></button>
+                    <button class="btn-control btn-font-right" onclick="onSetAlignText('end')"><i class="fab fa-facebook"></i></button>
+                    <select class="select-font-family" onchange="onSetFontFamily(this.value)">
+                    </select>
+                    <button class="btn-control btn-font-stroke">
+                        <i class="fab fa-facebook"></i>
+                        <input type="color" oninput="onSetStrokeColor(this.value)">
+                    </button>
+                    <button class="btn-control btn-font-fill">
+                        <i class="fab fa-facebook"></i>
+                        <input type="color" oninput="onSetFillColor(this.value)">
+                    </button>
+                </div>
+
+                <div class="control-stickers flex">
+
+                </div>
+
+                <div class="control-sharing flex">
+
+                    <a class="btn-control btn-share" onclick="shareToFacebook(this)">
+                        <span>Share</span>
+                        <i class="fab fa-facebook"></i>
+                        <i class="fab fa-facebook"></i>
+                    </a>
+
+                    <a class="btn-control btn-download" onclick="downloadCanvas(this)">
+                        <span>Download</span>
+                        <i class="fab fa-facebook"></i>
+                    </a>
+
+                    <a class="btn-control btn-save" onclick="onSaveMeme()">
+                        <span>Save</span>
+                        <i class="fab fa-facebook"></i>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- saved memes -->
+        <section class="saved-memes-container display-none">
+            <div class="saved-memes-gallery gallery main-layout flex">
+
+            </div>
+        </section>
+    </main>
+    
+    <script src="js/services/util.serivce.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/upload.service.js"></script>
+    <script src="js/services/share.service.js"></script>
+    <script src="js/services/gallery.service.js"></script>
+    <script src="js/controllers/gallery.controller.js"></script>
+    <script src="js/services/editor.service.js"></script>
+    <script src="js/controllers/editor.controller.js"></script>
+    <script src="js/controllers/saved.controller.js"></script>
+</body>
+</html>
