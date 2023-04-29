@@ -1,5 +1,9 @@
 'use strict'
 
+function saveMemesToStorage() {
+    saveToStorage('savedMemesDB', gSavedMemes)
+}
+
 function saveToStorage(key, value) {
     const str = JSON.stringify(value)
     localStorage.setItem(key, str)
